@@ -182,18 +182,18 @@
 
 <script>
   var fireballSize = 22;
+  var wizardWidth = 70;
+  var wizardSpeed = 3;
+
   var getFireballSpeed = function (isMovingLeft) {
     if (isMovingLeft) {
       return 2;
     }
-
     return 5;
   }
-  var wizardWidth = 70;
   var getWizardHeight = function () {
     return 1.337 * wizardWidth;
   }
-  var wizardSpeed = 3;
   var getWizardX = function (gameFieldWidth) {
     return (gameFieldWidth - wizardWidth) / 2;
   }
