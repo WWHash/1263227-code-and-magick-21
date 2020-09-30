@@ -37,14 +37,12 @@ var drawText = function (ctx, text, textX, textY) {
   ctx.fillText(text, textX, textY);
 };
 
-var DrawStatistics = function (ctx, name, time, maximumTime, index) {
+var drawStatistics = function (ctx, name, time, maximumTime, index) {
   var barHeight = MAXHEIGHTGISTOGRAM * time / maximumTime;
   var maximumGap = CLOUD_X + GAP_Y + (GAP_Y + TEXT_WIDTH) * index;
   ctx.fillStyle = '#000';
   drawText(ctx, name, maximumGap, CLOUD_Y + CLOUD_HEIGHT - GAP);
   drawText(ctx, Math.floor(time), maximumGap, CLOUD_Y + MAXHEIGHTGISTOGRAM + GAP_Y + GAP_X - barHeight);
-  const color = getColorGistogramm(name);
-  console.log(color);
   ctx.fillStyle = getColorGistogramm(name);
   ctx.fillRect(maximumGap, CLOUD_Y + CLOUD_HEIGHT - GAP_Y - barHeight, BAR_WIDTH, barHeight);
 };
@@ -58,6 +56,6 @@ window.renderStatistics = function (ctx, players, times) {
   drawText(ctx, 'Список результатов:', CLOUD_X + GAP_X, CLOUD_Y + GAP_Y + GAP);
   var maxTime = getMaxElement(times);
   for (var i = 0; i < players.length; i++) {
-    DrawStatistics(ctx, players[i], times[i], maxTime, i);
+    drawStatistics(ctx, players[i], times[i], maxTime, i);
   }
 };
