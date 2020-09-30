@@ -26,23 +26,25 @@ var getMaxElement = function (arr) {
 };
 
 function getRandomInt(min, max) {
-  return Math.random() * (max - min + 1) + min;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 var getColorGistogramm = function (name) {
-  return (name === 'Вы') ? '#f00' : 'rgba(0, 0, 255, ' + getRandomInt(0.3, 1) + ')';
+  return (name === 'Вы') ? 'rgba(255, 0, 0, 1)' : 'hsl(240, ' + getRandomInt(0, 100) + '%, 50%)';
 };
 
 var drawText = function (ctx, text, textX, textY) {
   ctx.fillText(text, textX, textY);
 };
 
-var getDrawStatistics = function (ctx, name, time, maximumTime, index) {
+var DrawStatistics = function (ctx, name, time, maximumTime, index) {
   var barHeight = MAXHEIGHTGISTOGRAM * time / maximumTime;
   var maximumGap = CLOUD_X + GAP_Y + (GAP_Y + TEXT_WIDTH) * index;
   ctx.fillStyle = '#000';
   drawText(ctx, name, maximumGap, CLOUD_Y + CLOUD_HEIGHT - GAP);
   drawText(ctx, Math.floor(time), maximumGap, CLOUD_Y + MAXHEIGHTGISTOGRAM + GAP_Y + GAP_X - barHeight);
+  const color = getColorGistogramm(name);
+  console.log(color);
   ctx.fillStyle = getColorGistogramm(name);
   ctx.fillRect(maximumGap, CLOUD_Y + CLOUD_HEIGHT - GAP_Y - barHeight, BAR_WIDTH, barHeight);
 };
@@ -56,6 +58,6 @@ window.renderStatistics = function (ctx, players, times) {
   drawText(ctx, 'Список результатов:', CLOUD_X + GAP_X, CLOUD_Y + GAP_Y + GAP);
   var maxTime = getMaxElement(times);
   for (var i = 0; i < players.length; i++) {
-    getDrawStatistics(ctx, players[i], times[i], maxTime, i);
+    DrawStatistics(ctx, players[i], times[i], maxTime, i);
   }
 };
