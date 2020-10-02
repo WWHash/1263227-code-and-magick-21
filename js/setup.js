@@ -26,7 +26,7 @@ var createRandomWizardCollection = function (count) {
       coatColor: getRandomElement(COAT_COLOR),
       eyesColor: getRandomElement(EYES_COLOR),
     };
-  };
+  }
 };
 
 var renderWizard = function (wizard) {
@@ -35,7 +35,7 @@ var renderWizard = function (wizard) {
   wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
   wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
   return wizardElement;
-}
+};
 
 var getDrawWizard = function (collection) {
   var fragment = document.createDocumentFragment();
@@ -43,7 +43,7 @@ var getDrawWizard = function (collection) {
     fragment.appendChild(renderWizard(collection[i]));
   }
   similarListElement.appendChild(fragment);
-}
+};
 
 createRandomWizardCollection(COUNT_OF_WIZARD);
 getDrawWizard(wizards);
