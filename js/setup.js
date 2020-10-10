@@ -4,9 +4,7 @@ const WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', '
 const WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 const COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 const EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
-const WIZARD_COAT_COLOR = ['rgb (101, 137, 164)', 'rgb (241, 43, 107)', 'rgb (146, 100, 161)', 'rgb (56, 159, 117)', 'rgb (215, 210, 55)', 'rgb (0, 0, 0)'];
-const WIZARD_EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
-const WIZARD_COLOR_FIREBALL = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
+const FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 const COUNT_OF_WIZARD = 4;
 
 let setup = document.querySelector('.setup');
@@ -81,9 +79,7 @@ let closeSetup = function () {
   document.removeEventListener('keydown', onPopupEscPress);
 };
 
-openButtonSetup.addEventListener('click', function () {
-  openSetup();
-});
+openButtonSetup.addEventListener('click', openSetup());
 
 openButtonSetup.addEventListener('keydown', function (evt) {
   if (evt.key === 'Enter') {
@@ -91,10 +87,7 @@ openButtonSetup.addEventListener('keydown', function (evt) {
   }
 });
 
-
-closeButtonSetup.addEventListener('click', function () {
-  closeSetup();
-});
+closeButtonSetup.addEventListener('click', closeSetup());
 
 closeButtonSetup.addEventListener('keydown', function (evt) {
   if (evt.key === 'Enter') {
@@ -107,19 +100,19 @@ nameInput.addEventListener('keydown', function (evt) {
 });
 
 wizardCoat.addEventListener('click', function () {
-  var color = getRandomElement(WIZARD_COAT_COLOR);
+  let color = getRandomElement(COAT_COLORS);
   wizardCoat.style.fill = color;
   coatInput.value = color;
 });
 
 wizardEyes.addEventListener('click', function () {
-  var color = getRandomElement(WIZARD_EYES_COLOR);
+  let color = getRandomElement(EYES_COLORS);
   wizardEyes.style.fill = color;
   eyesInput.value = color;
 });
 
 wizardFireball.addEventListener('click', function () {
-  var color = getRandomElement(WIZARD_COLOR_FIREBALL);
+  let color = getRandomElement(FIREBALL_COLORS);
   wizardFireball.style.backgroundColor = color;
   fireballInput.value = color;
 });
