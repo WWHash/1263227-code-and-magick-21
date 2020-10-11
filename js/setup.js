@@ -79,7 +79,7 @@ let closeSetup = function () {
   document.removeEventListener('keydown', onPopupEscPress);
 };
 
-openButtonSetup.addEventListener('click', openSetup());
+openButtonSetup.addEventListener('click', openSetup);
 
 openButtonSetup.addEventListener('keydown', function (evt) {
   if (evt.key === 'Enter') {
@@ -87,7 +87,7 @@ openButtonSetup.addEventListener('keydown', function (evt) {
   }
 });
 
-closeButtonSetup.addEventListener('click', closeSetup());
+closeButtonSetup.addEventListener('click', closeSetup);
 
 closeButtonSetup.addEventListener('keydown', function (evt) {
   if (evt.key === 'Enter') {
