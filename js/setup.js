@@ -34,9 +34,9 @@
 
   let renderWizard = function (wizard) {
     let wizardElement = similarWizardTemplate.cloneNode(true);
-    wizardElement.querySelector('.setup-similar-label').textContent = `${wizard.name} ${wizard.surname}`;
-    wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+    wizardElement.querySelector('.setup-similar-label').textContent = `${wizard.name}`;
+    wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
+    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.colorEyes;
     return wizardElement;
   };
 
@@ -48,9 +48,16 @@
     similarListElement.appendChild(fragment);
   };
 
-  let wizards = createRandomWizardCollection(COUNT_OF_WIZARD);
-  drawWizard(wizards);
-  setupDialog.querySelector('.setup-similar').classList.remove('hidden');
+  window.backend.load(function (wizards) {
+    var fragment = document.createDocumentFragment();
+
+    for (var i = 0; i < COUNT_OF_WIZARD; i++) {
+      fragment.appendChild(renderWizard(wizards[i]));
+    }
+    similarListElement.appendChild(fragment);
+
+    setupDialog.querySelector('.setup-similar').classList.remove('hidden');
+  }, function() {});
 
   wizardCoat.addEventListener('click', function () {
     let color = window.util.getRandomElement(COAT_COLORS);
